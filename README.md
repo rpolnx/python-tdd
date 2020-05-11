@@ -4,6 +4,6 @@
 - TDD Katas following this guide: https://www.michael-whelan.net/code-katas-for-practicing-tdd/
 
 ## Exercises
-- Anagrams
- - Anagram.py
- - AnagramTest.py
+
+### Anagrams
+### Bank Transfer
