@@ -43,6 +43,32 @@ class BankTransferTest(unittest.TestCase):
         self.assertEqual(5, sender_account_final_balance)
         self.assertEqual(35, receiver_account_final_balance)
 
+    def test_should_create_transaction_history(self):
+        sender_account_id = bankTransfer.create_account('sender', 15)
+        receiver_account_id = bankTransfer.create_account('receiver', 25)
+
+        transaction_id = bankTransfer.transfer_money(sender_account_id, receiver_account_id, 10)
+
+        transaction = bankTransfer.get_transaction_by_id(transaction_id)
+
+        self.assertTrue(transaction)
+
+    def test_should_get_all_transactions_from_account(self):
+        sender_account_id = bankTransfer.create_account('sender', 15)
+        receiver_account_id_1 = bankTransfer.create_account('receiver', 25)
+        receiver_account_id_2 = bankTransfer.create_account('receiver2', 0)
+
+        bankTransfer.transfer_money(sender_account_id, receiver_account_id_1, 10)
+        bankTransfer.transfer_money(sender_account_id, receiver_account_id_2, 5)
+
+        sender_transactions = bankTransfer.get_transactions_by_account_id(sender_account_id)
+        receiver_transactions = bankTransfer.get_transactions_by_account_id(receiver_account_id_1)
+        receiver_transactions_2 = bankTransfer.get_transactions_by_account_id(receiver_account_id_2)
+
+        self.assertEqual(2, len(sender_transactions))
+        self.assertTrue(1, len(receiver_transactions))
+        self.assertTrue(1, len(receiver_transactions_2))
+
 
 if __name__ == '__main__':
     unittest.main()
