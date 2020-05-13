@@ -19,11 +19,11 @@ def transfer_money(sender_account_id: str, receiver_account_id: str, value: floa
     sender_account: dict = get_account(sender_account_id).copy()
     receiver_account: dict = get_account(receiver_account_id).copy()
 
-    sender_account['id'] = sender_account_id
-    receiver_account['id'] = receiver_account_id
-
     if value > sender_account['currentMoney']:
         raise Exception('Cannot transfer more money than current\'s account balance')
+
+    sender_account['id'] = sender_account_id
+    receiver_account['id'] = receiver_account_id
 
     transaction_id: str = create_transaction_registry(sender_account, receiver_account, value)
 
