@@ -1,7 +1,7 @@
-def generateFibonacciSequence(position: int) -> int:
+def getValueFor(position: int) -> int:
     if position == 0 or position == 1:
         return position
-    return generateFibonacciSequence(position - 1) + generateFibonacciSequence(position - 2)
+    return getValueFor(position - 1) + getValueFor(position - 2)
 
 
 ########################
