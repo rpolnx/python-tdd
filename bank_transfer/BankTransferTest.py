@@ -1,6 +1,6 @@
 import unittest
 
-from bankTransfer import BankTransfer as bankTransfer
+from bank_transfer import BankTransfer as bankTransfer
 
 
 class BankTransferTest(unittest.TestCase):
