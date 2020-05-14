@@ -30,6 +30,20 @@ class FibonacciTest(unittest.TestCase):
         result: int = fibonacciGenerator.generateFibonacciSequence(8)
         self.assertEqual(21, result)
 
+    # bonus
+    def test_should_test_memoized_is_faster_than_normal(self):
+        initialMemo = time.time()
+        fibonacciGenerator.generateFibonacciSequence(21)
+        endMemo = time.time()
+        fibonacciGenerator.generateFibonacciSequence = fibonacciGenerator.Memoize(fibonacciGenerator.generateFibonacciSequence)
+        fibonacciGenerator.generateFibonacciSequence(150)
+        endSequence = time.time()
+
+        deltaRecursive = endMemo - initialMemo
+        deltaMemoized = endSequence - endMemo
+        self.assertGreater(0.5, deltaMemoized)
+        self.assertGreater(deltaRecursive, deltaMemoized)
+
 
 if __name__ == '__main__':
     unittest.main()
