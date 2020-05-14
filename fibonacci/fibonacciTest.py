@@ -1,4 +1,5 @@
 import unittest
+import time
 
 from fibonacci import fibonacciGenerator
 
